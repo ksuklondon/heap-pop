@@ -96,7 +96,18 @@ public:
 	void pop()
 	{
 		//TODO Implement `Heap` `pop` methods that removes the key value pair with the greatest key value (root of the heap)
+		if (empty())
+			throw std::runtime_error("Pop from an empty heap.");
 
+		// Swap the root with the last element.
+		std::swap(table[0], table.back());
+
+		// Remove the last element (which was the root).
+		table.pop_back();
+
+		// Restore the heap property.
+		if (!empty())
+			heapify(0);
 	}
 
 	template<typename StreamType>
